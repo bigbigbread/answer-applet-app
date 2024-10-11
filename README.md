@@ -11,7 +11,3 @@
   - 变量命名：小驼峰 如：`loginStatus` `loginInfo`等
   - 函数命名：小驼峰 如：`login` `logout`等
   - 类命名：大驼峰  如：`Login` `User`等
-
-# 签到处（git）
-- hardstone
-- zhoujunlingla
