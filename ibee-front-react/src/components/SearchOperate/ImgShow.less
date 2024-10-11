@@ -1,0 +1,55 @@
+.ant-upload-list {
+  width: 100%;
+  // 卡片效果
+  // height: 80px;
+  // 加上阴影和border-radius
+  .ant-upload-list-item-container {
+    height: 100%;
+    width: 100%;
+    .ant-upload-list-item.ant-upload-list-item-done {
+      height: 100%;
+      width: 100%;
+      padding: 0px;
+      border: none;
+      .ant-upload-list-item-thumbnail {
+        // width: 40%;
+        border-radius: 5px;
+        width: 200px;
+        max-width: 200px;
+        min-width: 150px;
+        height: calc(200px / 16 * 9);
+        display: flex;
+        border: 1px solid #ddd;
+        padding: 0px;
+        margin: 0px;
+        box-shadow: 0px 0px 5px #ddd;
+        .ant-upload-list-item-image {
+          width: 200px !important;
+          padding: 0px;
+          margin: 0px;
+          height: calc(200px / 16 * 9) !important;
+          // 图片铺满
+          object-fit: cover;
+          display: block;
+        }
+      }
+      .ant-upload-list-item-name {
+        font-size: 18px;
+        font-weight: 400;
+        color: #333;
+      }
+      .ant-upload-list-item-actions.picture {
+        // font-size: 20px;
+        .ant-btn {
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          margin-right: 30px;
+          .anticon {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}

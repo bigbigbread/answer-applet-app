@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <img src="./smallsmall.jpg" alt="">
+  <button>提交</button>
+  <script>
+    const btn = document.querySelector('button')
+    const img = document.querySelector('img')
+    // 获取img图片的二进制数据
+        /**
+     * 图像转Base64
+     */
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
+        var dataURL = canvas.toDataURL("image/" + ext);
+        return dataURL;
+    }
+
+    /**
+     *Base64字符串转二进制
+    */
+    function dataURLtoBlob(dataurl) {
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {
+            type: mime
+        });
+    }
+    const getImgBinay = () => {
+      const image = new Image()
+      img.crossOrigin = 'Anonymous'
+      image.src = img.src
+      return new Promise((resolve,reject)=>{
+        image.onload = function () {
+      //文件的Base64字符串
+        const base64 = getBase64Image(image);
+        // console.log(base64);
+        //Base64字符串转二进制
+        const file = dataURLtoBlob(base64);
+        // console.log(file);
+        resolve(file)
+      }
+      })
+    }
+    btn.addEventListener('click',  async () => {
+      const file = await getImgBinay()
+      console.log(file)
+      axios.post('http://7572ce5e.r2.cpolar.cn/user/register',file, {
+        params: {
+          userName: '月晕'
+        },
+        headers: {
+          // 'Content-Type': 'multipart/form-data'
+          'Authorization': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTczODkxNDAsInVzZXJJZCI6Im84YlY1NWVjOVJhZ0RuVExXeHZ0Rl9pTl9nUzQiLCJzZXNzaW9uSWQiOiI0bC9XNEVmSVlhS3pseitqNjNLY2lnPT0ifQ.VBUn3jH3y56_JCGWVW59c6E0j3_MsY7VDJd4gradk4KU-AHi3HUhJLSi8Yp4KbpD7sDoV1qE1W0Wmfti5eDiEA'
+        }
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    })
+  </script>
+</body>
+</html>

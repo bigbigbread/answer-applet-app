@@ -1,0 +1,26 @@
+// 然后上传图片
+      if (problemId) {
+        setUploadProblmData({
+          ...uploadProblmData,
+          id: problemId
+        })
+        const problemPic = await uploadProblemPic(
+          {
+            id: problemId,
+            type: uploadProblmData.type
+          },
+          uploadProblmData.imgBinaryData
+        )
+        console.log('problemPic', problemPic)
+        if (problemPic === 'error') {
+          message.error('上传图片失败')
+          return
+        }
+        // 最后更新题目
+        message.success('创建题目成功')
+        init()
+        setIsModalOpen(false)
+      } else {
+        message.error('创建题目失败')
+        console.log('创建题目失败')
+      }

@@ -1,0 +1,29 @@
+.edit-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  // 固定不动
+  margin-top: 10px;
+  flex-direction: column;
+  // background-color: red;
+  .edit-item {
+    display: flex;
+    width: 60%;
+    // border: 1px solid #ccc;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    .edit-title {
+      margin-right: 10px;
+      // 文字不换行
+      white-space: nowrap;
+    }
+    .edit-input {
+      margin-left: 8px;
+      width: 40%;
+      height: 30px;
+      padding: 0 10px;
+    }
+  }
+}
